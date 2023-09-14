@@ -3,24 +3,19 @@ package com.example.shop_service.service;
 import java.io.IOException;
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.example.shop_service.custom_exceptions.ProductNotFoundException;
 import com.example.shop_service.dto.ProductDto;
-import com.example.shop_service.model.Product;
+import com.example.shop_service.dto.ResponseProductDto;
 
 public interface ProductService {
 
-//	ProductDto addProduct(ProductDto product);
+	ResponseProductDto addProductWithImage(ProductDto product) throws IOException;
 
-//	List<ProductDto> getAllProducts();
-//	
-//	ProductDto getProduct(String id) throws ProductNotFoundException;
-//
-//	ProductDto updateProduct(ProductDto product);
+	List<ResponseProductDto> getAllProducts();
+	
+	ResponseProductDto getProduct(String id) throws ProductNotFoundException;
+
+	ResponseProductDto updateProduct(ProductDto product) throws IOException, ProductNotFoundException;
 
 	void deleteProduct(String id);
-
-	Product addProductWithImage(ProductDto product) throws IOException;
-
 }

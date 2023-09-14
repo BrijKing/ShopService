@@ -2,8 +2,6 @@ package com.example.shop_service.dto;
 
 import java.time.LocalDate;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,18 +11,19 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @ToString
 @Builder
-public class ProductDto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class ResponseProductDto {
 
-	private String id;
+	private String productId;
 	private String title;
 	private String description;
 	private int quantity;
 	private LocalDate maintenance;
 	private boolean isMaintained;
 	private long price;
-	private MultipartFile image;
+	private byte[] image;
+
 }

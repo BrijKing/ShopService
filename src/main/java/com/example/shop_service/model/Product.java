@@ -23,14 +23,14 @@ import lombok.ToString;
 @Builder
 public class Product {
 
-    @Id
-    private String id;
-    private String title;
-    private String description;
-    private int quantity;
-    private LocalDate maintenance;
-    private boolean isMaintained;
-    private long price;
-    private byte[] image;
+	@Id
+	private String id;
+	private String title;
+	private String description;
+	private int quantity;
+	private LocalDate maintenance;
+	private boolean isMaintained;
+	private long price;
+	private byte[] image;
 
 }
