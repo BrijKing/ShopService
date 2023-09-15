@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.shop_service.custom_exceptions.OrderNotFoundException;
+import com.example.shop_service.custom_exceptions.ProductNotFoundException;
 import com.example.shop_service.dto.OrderDto;
 import com.example.shop_service.model.Order;
 import com.example.shop_service.repository.OrderRepo;
+import com.example.shop_service.repository.ProductRepo;
 import com.example.shop_service.service.OrderService;
 
 @Service
@@ -20,11 +22,20 @@ public class OrderServiceImp implements OrderService {
 
     @Autowired
     private ModelMapper modelMapper;
+    
+    @Autowired
+    private ProductRepo productRepo;
 
     @Override
-    public OrderDto createOrder(OrderDto orderDto) {
+    public OrderDto createOrder(OrderDto orderDto) throws ProductNotFoundException {
         
         Order order = modelMapper.map(orderDto, Order.class);
+        List<String> productsIds = orderDto.getProductsId();
+        
+        for (String productId : productsIds) {
+			productRepo.findById(productId).orElseThrow(ProductNotFoundException::new);
+		}
+        
         Order savedOrder = orderRepo.save(order);
         return modelMapper.map(savedOrder, OrderDto.class);
     }

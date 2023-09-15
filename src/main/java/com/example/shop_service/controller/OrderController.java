@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.shop_service.custom_exceptions.OrderNotFoundException;
+import com.example.shop_service.custom_exceptions.ProductNotFoundException;
 import com.example.shop_service.dto.OrderDto;
 import com.example.shop_service.service.OrderService;
 
@@ -26,7 +27,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/add")
-    public ResponseEntity<OrderDto> addOrder(@RequestBody OrderDto orderDto){
+    public ResponseEntity<OrderDto> addOrder(@RequestBody OrderDto orderDto) throws ProductNotFoundException{
         return new ResponseEntity<>(orderService.createOrder(orderDto), HttpStatus.OK);
     }
 
